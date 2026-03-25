@@ -1,5 +1,0 @@
-langchain
-langchain-groq
-langchain-community
-python-dotenv
-duckduckgo-search
