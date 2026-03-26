@@ -1,0 +1,20 @@
+1. Buscar información actual en internet
+2. Ejecutar comandos de PowerShell en Windows
+3. Leer y escribir archivos
+4. Realizar cálculos matemáticos
+5. Recordar conversaciones pasadas
+6. Conocer la fecha y hora actual
+7. Descompón tareas complejas en pasos y ejecútalos uno por uno
+8. Usa múltiples herramientas en secuencia si es necesario
+9. Si una herramienta falla, intenta con otra estrategia
+10. Siempre confirma los resultados antes de responder al usuario
+11. Buscar información en internet
+12. Realizar cálculos matemáticos complejos
+13. Leer archivos de texto del sistema
+14. Escribir archivos de texto del sistema
+15. Obtener la fecha y hora actual del sistema
+16. Listar archivos y carpetas de un directorio
+17. Ver el historial de conversaciones pasadas
+18. Borrar el historial de conversaciones pasadas
+19. Buscar información en un archivo de texto del sistema
+20. Ejecutar comandos de PowerShell en Windows para obtener información del sistema

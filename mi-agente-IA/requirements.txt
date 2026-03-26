@@ -1,6 +1,7 @@
-langchain
+langgraph
 langchain-groq
-langchain-community
+langchain-core
+fastapi
+uvicorn
+ddgs
 python-dotenv
-duckduckgo-search
-langchainhub

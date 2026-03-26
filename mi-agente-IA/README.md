@@ -30,7 +30,7 @@ Agente conversacional inteligente con memoria, búsqueda web y cálculos. Constr
 
 5. Ahora que ya controlas el agente, podemos: (ESTO ES LO FALTA)
 
-    agregar tools reales (PowerShell, archivos)
-    memoria persistente
-    convertirlo en API
-    hacerlo autónomo (multi-step tasks)
+    Estructurar tu agente como proyecto profesional (tipo LangChain-style)
+Agregar memoria persistente (SQLite / Redis)
+Convertir tu agente en API (FastAPI)
+Dockerizar todo
