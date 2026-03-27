@@ -1,88 +1,140 @@
+import sys
 from src.agent import crear_agente
-from src.memory import guardar_interaccion, historial_como_texto
-from langchain_core.messages import HumanMessage, SystemMessage
+from src.memory import (
+    guardar_interaccion,
+    historial_como_texto,
+    limpiar_historial,
+    cargar_historial
+)
+from langchain_core.messages import HumanMessage, AIMessage
 
-def construir_estado(objetivo: str, historial_previo: list) -> dict:
-    """Construye el estado con historial incluido para memoria persistente."""
-    # Inyectar historial como contexto en el primer mensaje
-    contexto_historial = historial_como_texto(n_ultimos=8)
 
-    mensaje_con_contexto = (
-        f"[HISTORIAL RECIENTE]\n{contexto_historial}\n\n"
-        f"[NUEVO OBJETIVO]\n{objetivo}"
-    )
+AYUDA = """
+╔══════════════════════════════════════════════════╗
+║           JARVIS — COMANDOS DISPONIBLES          ║
+╠══════════════════════════════════════════════════╣
+║  /ayuda      → mostrar esta ayuda               ║
+║  /historial  → ver conversaciones pasadas        ║
+║  /limpiar    → borrar historial                  ║
+║  /sistema    → reporte completo del sistema      ║
+║  /buscar X   → búsqueda rápida de X             ║
+║  /url X      → resumir contenido de URL X        ║
+║  /clima X    → clima de ciudad X                 ║
+║  /ping X,Y   → verificar hosts                  ║
+║  /salir      → cerrar JARVIS                     ║
+╚══════════════════════════════════════════════════╝
 
-    mensajes = historial_previo + [
-        HumanMessage(content=mensaje_con_contexto)
-    ]
+Ejemplos de preguntas:
+  • "tipo de cambio USD a MXN hoy"
+  • "analiza el log C:\\app\\error.log"
+  • "busca vulnerabilidades críticas de esta semana"
+  • "genera reporte del sistema y guárdalo"
+  • "verifica si 8.8.8.8 y google.com responden"
+"""
 
-    return {"messages": mensajes}
+
+def procesar_comando_rapido(cmd: str) -> str | None:
+    """Convierte comandos /slash en prompts naturales para el agente."""
+    cmd = cmd.strip()
+    if cmd == "/ayuda":
+        return None  # se maneja aparte
+    if cmd == "/historial":
+        return None
+    if cmd == "/limpiar":
+        return None
+    if cmd == "/sistema":
+        return "genera un reporte completo del sistema y guárdalo en reportes/sistema.md"
+    if cmd.startswith("/buscar "):
+        query = cmd[8:].strip()
+        return f"haz una búsqueda profunda sobre: {query}"
+    if cmd.startswith("/url "):
+        url = cmd[5:].strip()
+        return f"resume el contenido de esta URL: {url}"
+    if cmd.startswith("/clima "):
+        ciudad = cmd[7:].strip()
+        return f"dime el clima actual de {ciudad}"
+    if cmd.startswith("/ping "):
+        hosts = cmd[6:].strip()
+        return f"verifica la conectividad de estos hosts: {hosts}"
+    return cmd  # no es comando slash, es texto normal
 
 
 def main():
     agent = crear_agente()
-    historial_sesion = []  # historial en memoria RAM para la sesión actual
+    historial_sesion = []
 
-    print("💡 Comandos especiales:")
-    print("  'historial' → ver conversaciones pasadas")
-    print("  'limpiar'   → borrar historial")
-    print("  'salir'     → terminar\n")
+    print(AYUDA)
+    print("─" * 50)
 
     while True:
         try:
-            objetivo = input("🎯 Tú: ").strip()
+            entrada = input("\n💬 Tú: ").strip()
 
-            if not objetivo:
+            if not entrada:
                 continue
 
-            if objetivo.lower() == "salir":
-                print("👋 Hasta luego!")
+            # ── Comandos que no van al agente ──
+            if entrada.lower() in ["/salir", "salir", "exit", "quit"]:
+                print("\n👋 JARVIS desconectado.")
                 break
 
-            if objetivo.lower() == "historial":
-                print("\n📋 Historial:\n", historial_como_texto(20), "\n")
+            if entrada.lower() in ["/ayuda", "ayuda", "help"]:
+                print(AYUDA)
                 continue
 
-            if objetivo.lower() == "limpiar":
-                from src.memory import limpiar_historial
+            if entrada.lower() in ["/historial", "historial"]:
+                print("\n📋 HISTORIAL:\n")
+                print(historial_como_texto(20))
+                continue
+
+            if entrada.lower() in ["/limpiar", "limpiar"]:
                 print(limpiar_historial())
                 historial_sesion = []
                 continue
 
-            # Construir estado con historial
-            estado = construir_estado(objetivo, historial_sesion)
+            # ── Convertir comandos slash ──
+            prompt = procesar_comando_rapido(entrada)
+            if prompt is None:
+                continue
 
-            # Invocar agente
+            # ── Invocar agente con historial de sesión ──
+            estado = {
+                "messages": historial_sesion + [
+                    HumanMessage(content=prompt)
+                ]
+            }
+
+            print("\n⚙️  Procesando...", end="\r")
             respuesta = agent.invoke(estado)
-
-            # Extraer respuesta final
             mensajes = respuesta.get("messages", [])
-            respuesta_texto = ""
-            if mensajes:
-                ultimo = mensajes[-1]
-                respuesta_texto = ultimo.content
-                print(f"\n🤖 Agente: {respuesta_texto}\n")
-            else:
-                print("\n🤖 Sin respuesta\n")
+            respuesta_texto = (
+                mensajes[-1].content if mensajes else "Sin respuesta."
+            )
 
-            # Guardar en historial de sesión (solo user + assistant)
-            historial_sesion.append(HumanMessage(content=objetivo))
-            if respuesta_texto:
-                from langchain_core.messages import AIMessage
-                historial_sesion.append(AIMessage(content=respuesta_texto))
+            print(f"\n🤖 JARVIS:\n{respuesta_texto}\n")
 
-            # Mantener solo los últimos 6 mensajes en RAM
-            historial_sesion = historial_sesion[-6:]
+            # ── Actualizar historial de sesión (últimos 5 turnos) ──
+            historial_sesion.append(HumanMessage(content=prompt))
+            historial_sesion.append(AIMessage(content=respuesta_texto))
+            historial_sesion = historial_sesion[-10:]
 
-            # Guardar en disco
-            guardar_interaccion(usuario=objetivo, agente=respuesta_texto)
+            # ── Guardar en disco ──
+            guardar_interaccion(usuario=entrada, agente=respuesta_texto)
 
         except KeyboardInterrupt:
-            print("\n⛔ Detenido por el usuario")
-            break
+            print("\n\n⛔ Interrumpido. Escribe /salir para cerrar.")
         except Exception as e:
-            print(f"\n❌ Error: {str(e)}\n")
+            print(f"\n❌ Error: {e}\n")
 
 
+# ── Modo no interactivo: python -m src.main "tarea aquí" ──
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1:
+        tarea = " ".join(sys.argv[1:])
+        agent = crear_agente()
+        estado = {"messages": [HumanMessage(content=tarea)]}
+        respuesta = agent.invoke(estado)
+        mensajes = respuesta.get("messages", [])
+        print(mensajes[-1].content if mensajes else "Sin respuesta.")
+    else:
+        main()

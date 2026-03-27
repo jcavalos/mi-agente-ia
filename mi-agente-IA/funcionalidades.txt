@@ -18,3 +18,12 @@
 18. Borrar el historial de conversaciones pasadas
 19. Buscar información en un archivo de texto del sistema
 20. Ejecutar comandos de PowerShell en Windows para obtener información del sistema
+21. Ejecutar scripts complejos de PowerShell y remotos
+22. Realizar cálculos simbólicos y estadísticos
+23. Leer y escribir archivos JSON, CSV, Excel, PDF
+24. Analizar y resumir conversaciones pasadas
+25. Automatización de tareas repetitivas
+27. Monitoreo de sistema: CPU, RAM, discos, procesos
+28. Notificaciones y alertas al usuario
+29. Escaneo y validación de archivos
+30. Aprendizaje de patrones y sugerencias inteligentes
