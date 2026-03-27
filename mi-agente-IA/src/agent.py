@@ -45,7 +45,7 @@ def guardar_memoria(memoria):
         json.dump(memoria[-20:], f, indent=2)  # 🔥 limita tamaño
 
 
-# ⚙️ TOOL DISPATCHER
+#  TOOL DISPATCHER
 TOOLS = {
     "buscar_en_internet": buscar_en_internet,
     "buscar_noticias": buscar_noticias,

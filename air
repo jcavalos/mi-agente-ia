@@ -1,0 +1,59 @@
+[33mcommit 025c78dcaaf6c150be78877dafa732b18b764c98[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: WrayWorm <juan.carlos.avalos@outlook.com>
+Date:   Fri Mar 27 13:27:08 2026 -0600
+
+    agente gpt
+
+[33mcommit 15c5b89c012e9c29ec34f00d70240653fa254f73[m
+Author: WrayWorm <juan.carlos.avalos@outlook.com>
+Date:   Fri Mar 27 12:27:57 2026 -0600
+
+    Ignore venv folder
+
+[33mcommit 45e99c3aa3bdc49495841c60538cab553647868e[m
+Author: WrayWorm <juan.carlos.avalos@outlook.com>
+Date:   Fri Mar 27 11:25:28 2026 -0600
+
+    AgentGPT
+
+[33mcommit 89cc40f5c6be4abe9ae1343218afa1ad53e3c1b8[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: WrayWorm <juan.carlos.avalos@outlook.com>
+Date:   Thu Mar 26 11:28:13 2026 -0600
+
+    primer mejora
+
+[33mcommit 05750721699442069b080e9de1f0796e690c9e19[m
+Author: WrayWorm <juan.carlos.avalos@outlook.com>
+Date:   Wed Mar 25 14:57:59 2026 -0600
+
+    agente inteligente
+
+[33mcommit a69c5b819e30027cf66180d7a4fec5edecc13deb[m
+Author: WrayWorm <juan.carlos.avalos@outlook.com>
+Date:   Wed Mar 25 12:19:39 2026 -0600
+
+    boot IA
+
+[33mcommit 37c1e75691f2df36fc48bec6fb239fb15363e1cc[m
+Author: WrayWorm <juan.carlos.avalos@outlook.com>
+Date:   Wed Mar 25 12:13:00 2026 -0600
+
+    Remove .env from tracking and add to .gitignore
+
+[33mcommit d0044dc67cebf9a69fc3cf66c700d5471e9c5fe0[m
+Author: WrayWorm <juan.carlos.avalos@outlook.com>
+Date:   Wed Mar 25 12:06:16 2026 -0600
+
+    modificacion inicial
+
+[33mcommit f4d288b4d55a8e127234220870db9b14fcaf883b[m
+Author: WrayWorm <juan.carlos.avalos@outlook.com>
+Date:   Wed Mar 25 12:05:27 2026 -0600
+
+    Add .env to .gitignore
+
+[33mcommit 34b2ab48ce879b4983bd2a763bd0a02e01fa8ebf[m
+Author: WrayWorm <juan.carlos.avalos@outlook.com>
+Date:   Wed Mar 25 11:50:28 2026 -0600
+
+    firt agent
