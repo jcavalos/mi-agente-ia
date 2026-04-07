@@ -3,7 +3,7 @@ main_tienda.py - Interfaz de prueba del agente vendedor
 Ejecuta esto para probar localmente antes de conectar a WhatsApp
 """
 
-from agent_tienda import crear_agente_tienda, responder_mensaje
+from agente_tienda import crear_agente_tienda, responder_mensaje
 from config_negocio import NOMBRE_TIENDA, TIPO_ROPA, CATALOGO
 import sys
 

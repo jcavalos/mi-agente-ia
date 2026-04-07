@@ -3,7 +3,7 @@ integraciones.py - Conexiones a WhatsApp, Instagram, Facebook y otras redes
 Incluye ejemplos para cada plataforma
 """
 
-from agent_tienda import crear_agente_tienda, responder_mensaje
+from agente_tienda import crear_agente_tienda, responder_mensaje
 from dotenv import load_dotenv
 import os
 from datetime import datetime

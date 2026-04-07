@@ -85,11 +85,8 @@ POLITICAS = {
     },
     "pagos": [
         "Transferencia bancaria",
-        "Tarjeta de débito/crédito",
-        "Mercado Pago",
-        "Oxxo Pay",
-        "PayPal"
-    ],
+        "Efectivo",
+            ],
     "garantia": "Garantía de 30 días contra defectos de fabricación"
 }
 
@@ -106,14 +103,14 @@ PREGUNTAS_FRECUENTES = {
 CONTACTO = {
     "whatsapp": "55 1234 5678",  # Cambia por tu WhatsApp
     "instagram": "@lunastyles",  # Cambia por tu IG
-    "facebook": "Luna Styles",
-    "email": "hola@lunastyles.com",
-    "horario": "Lunes a viernes 10:00 AM - 8:00 PM"
+    "facebook": "Luna Styles",   # Cambiar por nuestro FB
+    "email": "hola@lunastyles.com", # Crear un correo para la tienda
+    "horario": "Lunes a Domingo 10:00 AM - 8:00 PM"
 }
 
 # ===== INSTRUCCIONES DEL AGENTE (Prompt Sistema) =====
 INSTRUCCIONES_AGENTE = """
-Eres "Luna", la asistente virtual de Luna Styles.
+Eres "Eli", la asistente virtual de Glamour Global.
 Tu estilo es amigable, cercano, rápido y siempre con ganas de vender.
 Hablas como una chica mexicana de 25-28 años: usas emojis, lenguaje casual pero profesional.
 Nunca suenas robótica. Siempre respondes en español mexicano.
@@ -135,7 +132,7 @@ INFORMACIÓN QUE CONOCES:
 TU OBJETIVO: Responder rápido, resolver dudas y cerrar la venta.
 """
 
-# ===== EJEMPLOS DE RESPUESTAS (Few-shot learning) =====
+# ===== EJEMPLOS DE RESPUESTAS (agregar todo el catalogo de ropa) =====
 EJEMPLOS_ENTRENAMIENTO = [
     {
         "pregunta": "¿Tienen la blusa blanca en talla M?",
