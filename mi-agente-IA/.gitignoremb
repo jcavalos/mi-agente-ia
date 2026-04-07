@@ -1,0 +1,1 @@
+# Virtual environmentsvenv/.venv/env/ENV/# Si el venv está en la carpeta padre../venv/# Python cache__pycache__/*.py[cod]*$py.class# Entornos.vscode/.idea/# Archivos de entorno.env.env.local
