@@ -1,8 +1,15 @@
-langgraph
-langchain-groq
-langchain-core
-fastapi
-uvicorn
-ddgs
-python-dotenv
-requests
+# Core LangChain
+langchain>=1.2.0
+langchain-core>=1.2.0
+
+# Integraciones principales (Groq + OpenAI)
+langchain-groq>=1.1.0
+langchain-openai>=1.1.0
+
+# Otras dependencias que ya tenías
+python-dotenv>=1.0.0
+groq>=0.4.2
+duckduckgo-search>=3.9.2
+flask>=2.3.3
+flask-cors>=4.0.0
+requests>=2.31.0
